@@ -168,4 +168,4 @@ document.addEventListener('DOMContentLoaded', async () => mainEvent());
       })
     }
     
-    document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests/*
+    document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests*/
