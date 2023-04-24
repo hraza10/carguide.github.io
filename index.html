@@ -12,14 +12,16 @@
         </header>
         <div class="container">
             <div class="left_section box">
-                <h3>Make & Model</h3>
+                <h3>Filter Input</h3>
+            <form action="https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json" class="box main_form"></form>
                 <div>
                     <label for="make">Make</label>
                     <input type="text" id="make" name="make"/>
-                    <label for="make">Model</label>
-                    <input type="text" id="model" name="model"/>
+                    <label for="make">Country</label>
+                    <input type="text" id="country" name="country"/>
                 </div>
                 <div class="buttons">
+                    <button type="button" id="data_load">Load Data</button>
                     <button type="button" id="filter">Filter</button>
                 </div>
             </div>
