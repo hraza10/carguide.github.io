@@ -18,7 +18,10 @@ async function mainEvent() {
         // This changes the response from the GET into data we can use - an "object"
         currentList = await results.json();
         console.table(currentList);
+  });
 };
+
+document.addEventListener('DOMContentLoaded', async () => mainEvent());
 
 /*
   Hook this script to index.html
@@ -165,4 +168,4 @@ async function mainEvent() {
       })
     }
     
-    document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests
+    document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests/*
