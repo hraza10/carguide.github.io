@@ -100,13 +100,15 @@ Form Styles
     /* this will push other blocks out of the way */
   
     /* colors */
-    background-color: lightslategray;
-    color: black;
+    background-color: black;
+    color: white;
+    text-align: center;
   
     /* shapes */
-    border: 2px dashed;
-    border-radius: 6px;
+
+    
     font-size: 1.5rem;
+
     padding: 1.25rem;
     margin:0; /* removing the margin on h1 tags means the header pins to the top if we move */
   
@@ -143,14 +145,14 @@ Form Styles
   }
   
   .left_section {
-    background-color: steelblue;
+    background-color: gray;
     flex: 0 1 auto;
     margin: 1rem;
     padding: 1.5rem;
   }
   
   .right_section {
-    background-color: lightslategray;
+    background-color: gray;
     flex: 1 2 auto;
     margin: 1rem;
     align-items: center;
@@ -168,7 +170,7 @@ Form Styles
   .footer {
     flex-shrink: 0;
     padding: 1rem;
-    background-color: steelblue;
+    background-color: black;
     border: 2px dashed;
     border-radius: 4px;
     font-size: 1.2rem;
@@ -397,4 +399,9 @@ Form Styles
       100% {
         transform: translate(24px, 0);
       }
+    }
+
+    .chart_container {
+        height: 100%;
+        width: 100%;
     }

@@ -1,4 +1,3 @@
-
 // export async function loadVehicleData(req, res, next) {
 //   try {
 //     const url = 'https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json';
@@ -91,30 +90,30 @@ function filterList(list, query) {
     }));
   }
 
-  function initMap(){
-    const carto = L.map('map').setView([38.98, -76.93], 13);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(carto);
-    return carto;
-  }
+  // function initMap(){
+  //   const carto = L.map('map').setView([38.98, -76.93], 13);
+  //   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //     maxZoom: 19,
+  //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  //   }).addTo(carto);
+  //   return carto;
+  // }
     
-  function markerPlace(array, map) {
-    console.log('array for markers', array);
+  // function markerPlace(array, map) {
+  //   console.log('array for markers', array);
 
-    map.eachLayer((layer) => {
-      if (layer instanceof L.Marker) {
-        layer.remove();
-      }
-    });
+  //   map.eachLayer((layer) => {
+  //     if (layer instanceof L.Marker) {
+  //       layer.remove();
+  //     }
+  //   });
 
-    array.forEach((item) => {
-      console.log('markerPlace', item);
-      const {coordinates} = item.geocoded_column_1;
-      L.marker([coordinates[1], coordinates[0]]).addTo(map);
-    })
-  }
+  //   array.forEach((item) => {
+  //     console.log('markerPlace', item);
+  //     const {coordinates} = item.geocoded_column_1;
+  //     L.marker([coordinates[1], coordinates[0]]).addTo(map);
+  //   })
+  // }
 
   function initChart(chart) {
     return new Chart(chart, {
@@ -136,6 +135,17 @@ function filterList(list, query) {
       }
     });
   }
+  function shapeDataForChart(array) {
+    console.log(array);
+    return array.reduce((collection, item) => {
+      if(!collection[item.category]) {
+        collection[item.category] = [item];
+      } else {
+        collection[item.category].push(item);
+      }
+      return collection;
+    }, {});
+  }
 
   async function mainEvent() { // the async keyword means we can make API requests
     const mainForm = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
@@ -153,7 +163,7 @@ function filterList(list, query) {
     generateListButton.classList.add("hidden");
     
     // const carto = initMap();
-    initChart(chartTarget);
+    
     
     const storedData = localStorage.getItem("storedData");
     let parsedData = JSON.parse(storedData);
@@ -161,7 +171,9 @@ function filterList(list, query) {
       generateListButton.classList.remove("hidden");
     }
 
+
     let currentList = []; // this is "scoped" to the main event function
+    
     
     /* We need to listen to an "event" to have something happen in our page - here we're listening for a "submit" */
     loadDataButton.addEventListener('click', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
@@ -174,15 +186,21 @@ function filterList(list, query) {
   
       // This changes the response from the GET into data we can use - an "object"
       const storedList = await results.json();
+      console.log("storedList", storedList);
       localStorage.setItem('storedData', JSON.stringify(storedList));
+  
       parsedData = storedList;
+
 
       if (parsedData?.length > 0 ) {
         generateListButton.classList.remove("hidden");
       }
 
+      // const shapedData = shapeDataForChart(parsedData);
+      // const myChart = initChart(chartTarget, shapedData);
+
       loadAnimation.style.display = 'none';
-      console.table(storedList); 
+      
     });
   
   
