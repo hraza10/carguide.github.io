@@ -136,7 +136,7 @@ function filterList(list, query) {
     });
   }
   function shapeDataForChart(array) {
-    console.log(array);
+    
     return array.reduce((collection, item) => {
       if(!collection[item.category]) {
         collection[item.category] = [item];
@@ -186,18 +186,19 @@ function filterList(list, query) {
   
       // This changes the response from the GET into data we can use - an "object"
       const storedList = await results.json();
-      console.log("storedList", storedList);
-      localStorage.setItem('storedData', JSON.stringify(storedList));
+      // change storedList object ot results array
+      const dataList = storedList.Results;
+      localStorage.setItem('storedData', JSON.stringify(dataList));
   
-      parsedData = storedList;
+      parsedData = dataList;
 
 
       if (parsedData?.length > 0 ) {
         generateListButton.classList.remove("hidden");
       }
 
-      // const shapedData = shapeDataForChart(parsedData);
-      // const myChart = initChart(chartTarget, shapedData);
+      const shapedData = shapeDataForChart(parsedData);
+      const myChart = initChart(chartTarget, shapedData);
 
       loadAnimation.style.display = 'none';
       
