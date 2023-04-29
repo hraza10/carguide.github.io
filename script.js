@@ -115,14 +115,19 @@ function filterList(list, query) {
   //   })
   // }
 
-  function initChart(chart) {
+  function initChart(chart, object) {
+    
+    const labels = Object.keys(object);
+    const info = Object.values(object);
+    
+
     return new Chart(chart, {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: labels,
         datasets: [{
           label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          data: info,
           borderWidth: 1
         }]
       },
@@ -197,8 +202,25 @@ function filterList(list, query) {
         generateListButton.classList.remove("hidden");
       }
 
+      
+
+      let obj = {};
+
+      for (let i = 0, j = parsedData.length; i < j; i++) {
+        if (obj[parsedData[i].Country]) {
+          obj[parsedData[i].Country]++;
+        }
+        else {
+          obj[parsedData[i].Country] = 1;
+        } 
+      }
+
+      console.log("idk", obj);
       const shapedData = shapeDataForChart(parsedData);
-      const myChart = initChart(chartTarget, shapedData);
+
+      console.log(parsedData);
+      console.log("array", shapedData);
+      const myChart = initChart(chartTarget, obj);
 
       loadAnimation.style.display = 'none';
       
