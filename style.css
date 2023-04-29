@@ -145,14 +145,14 @@ Form Styles
   }
   
   .left_section {
-    background-color: gray;
+    background-color: silver;
     flex: 0 1 auto;
     margin: 1rem;
     padding: 1.5rem;
   }
   
   .right_section {
-    background-color: gray;
+    background-color: silver;
     flex: 1 2 auto;
     margin: 1rem;
     align-items: center;

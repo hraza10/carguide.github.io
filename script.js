@@ -126,9 +126,10 @@ function filterList(list, query) {
       data: {
         labels: labels,
         datasets: [{
-          label: '# of Votes',
+          label: 'Countries With Most Car Manufacturers',
           data: info,
-          borderWidth: 1
+          borderWidth: 1,
+          backgroundColor: 'rgba(255, 99, 71, 0.5)'
         }]
       },
       options: {
