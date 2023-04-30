@@ -258,4 +258,8 @@ function filterList(list, query) {
     })
   }
   
+  function myFunction() {
+    
+  }
+
   document.addEventListener('DOMContentLoaded', async () => mainEvent());
