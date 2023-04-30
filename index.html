@@ -25,14 +25,27 @@
             <div class="left_section box">
                     <h3>Filter Input</h3>
                 <form action="https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json" class="box main_form">
-                    <button type="button" id="data_load">Load Data</button>
-                    <button type="button" id="data_clear">Clear Data</button>
+                    <!-- <button type="button" id="data_load">Load Data</button>
+                    <button type="button" id="data_clear">Clear Data</button> -->
                     <div>
                         <label for="resto">Country</label>
-                        <input type="text" id="resto" name="resto"/>
+                        <select id = "filter" onchange = "filterCountry()" >
+                            <option> ---Choose tutorial--- </option>
+                            <option> United States </option>
+                            <option> United Kingdom </option>
+                            <option> Germany </option>
+                            <option> France </option>
+                            <option> Canada </option>
+                            <option> Mexico </option>
+                            <option> Turkey </option>
+                            <option> Japan </option>
+                            <option> South Korea </option>
+                            <option> China </option>
+                            <option> Italy </option>
+                        </select>
                     </div>
                     <div class="buttons">
-                        <button type="button" id="generate">Generate List</button>
+                        <button type="button" id="generate">Filter</button>
                     </div>
                 </form>
             </div>

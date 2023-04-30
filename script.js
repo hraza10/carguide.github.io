@@ -157,7 +157,7 @@ function filterList(list, query) {
 
   async function mainEvent() { // the async keyword means we can make API requests
     const mainForm = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
-    const loadDataButton = document.querySelector('#data_load');
+    const filterButton = document.querySelector('#filter');
     const clearDataButton = document.querySelector('#data_clear');
     const generateListButton = document.querySelector('#generate');
     const textField = document.querySelector('#resto');
