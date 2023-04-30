@@ -84,9 +84,11 @@ function filterList(list, query) {
   function cutRestaurantList(list) {
     console.log('fired cut list');
     const range = [...Array(15).keys()];
-    return (newArray = range.map((item) => {
+    console.log("range", range);
+    return(newArray = range.map((item) => {
       const index = getRandomIntInclusive(0, list.length - 1);
       return list[index]
+      
     }));
   }
 
@@ -129,7 +131,7 @@ function filterList(list, query) {
           label: 'Countries With Most Car Manufacturers',
           data: info,
           borderWidth: 1,
-          backgroundColor: 'rgba(255, 99, 71, 0.5)'
+          backgroundColor: 'rgba(255, 0, 0, 1)'
         }]
       },
       options: {
@@ -178,13 +180,10 @@ function filterList(list, query) {
     }
 
 
+
     let currentList = []; // this is "scoped" to the main event function
-    
-    
-    /* We need to listen to an "event" to have something happen in our page - here we're listening for a "submit" */
-    loadDataButton.addEventListener('click', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
-      // this is substituting for a "breakpoint" - it prints to the browser to tell us we successfully submitted the form
-      console.log('Loading Data');
+
+    console.log('Loading Data');
       loadAnimation.style.display = 'inline-block'
   
       // Basic GET request - this replaces the form Action.
@@ -195,7 +194,7 @@ function filterList(list, query) {
       // change storedList object ot results array
       const dataList = storedList.Results;
       localStorage.setItem('storedData', JSON.stringify(dataList));
-  
+      console.log('storedData', storedData);
       parsedData = dataList;
 
 
@@ -224,6 +223,12 @@ function filterList(list, query) {
       const myChart = initChart(chartTarget, obj);
 
       loadAnimation.style.display = 'none';
+    
+    
+    /* We need to listen to an "event" to have something happen in our page - here we're listening for a "submit" */
+    loadDataButton.addEventListener('click', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
+      // this is substituting for a "breakpoint" - it prints to the browser to tell us we successfully submitted the form
+      
       
     });
   
