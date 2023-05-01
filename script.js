@@ -131,7 +131,7 @@ function filterList(list, query) {
           label: 'Countries With Most Car Manufacturers',
           data: info,
           borderWidth: 1,
-          backgroundColor: 'rgb(106, 90, 205)'
+          backgroundColor: 'rgb(90, 90, 120)'
         }]
       },
       options: {
