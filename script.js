@@ -194,7 +194,7 @@ function filterList(list, query) {
       // change storedList object ot results array
       const dataList = storedList.Results;
       localStorage.setItem('storedData', JSON.stringify(dataList));
-      console.log('storedData', storedData);
+      
       parsedData = dataList;
 
 
@@ -215,14 +215,46 @@ function filterList(list, query) {
         } 
       }
 
-      console.log("idk", obj);
+     
       const shapedData = shapeDataForChart(parsedData);
 
-      console.log(parsedData);
-      console.log("array", shapedData);
-      const myChart = initChart(chartTarget, obj);
+      let myChart = initChart(chartTarget, obj);
 
       loadAnimation.style.display = 'none';
+
+      const dropdown = document.getElementById("filter");
+      
+      dropdown.addEventListener("change", (event) => {
+        const selectedOption = event.target.value;
+        
+        
+        console.log(Object.keys(obj));
+        console.log(selectedOption);
+        
+        for (let i = 0, j = Object.keys(obj).length; i < j; i++) {
+
+          if (String(selectedOption) === 'ALL') {
+            
+            myChart.destroy();
+            myChart = initChart(chartTarget, obj);
+          }
+
+          if (Object.keys(obj)[i] === String(selectedOption)) {
+            console.log("hello", Object.keys(obj)[i]);
+            const hello = Object.keys(obj)[i];
+            const arr = {};
+            arr[Object.keys(obj)[i]] = Object.values(obj)[i];
+
+            myChart.destroy();
+            myChart = initChart(chartTarget, arr);
+              
+          };
+            
+            
+        }
+        
+
+      });
     
     
     /* We need to listen to an "event" to have something happen in our page - here we're listening for a "submit" */
@@ -258,8 +290,14 @@ function filterList(list, query) {
     })
   }
   
-  function myFunction() {
-    
+  function filterCountry() {
+    const charts = document.querySelectorAll(".chart");
+
+ 
   }
 
+  function destroyChart(chart) {
+    chart.destroy();
+  }
   document.addEventListener('DOMContentLoaded', async () => mainEvent());
+
