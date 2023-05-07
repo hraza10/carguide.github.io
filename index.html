@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
 
 
-    <!-- <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -20,8 +19,6 @@
             <div class="left_section box">
                     <h3>Filter Input</h3>
                 <form action="https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json" class="box main_form">
-                    <!-- <button type="button" id="data_load">Load Data</button>
-                    <button type="button" id="data_clear">Clear Data</button> -->
                     <div>
                         <label for="resto">Country</label>
                         <select id = "filter">
@@ -46,7 +43,6 @@
             </div>
             <div class="right_section box">
                 <h3>Vehicle Data</h3>
-                <!-- <div id="map" class="box" ></div> -->
                 <div class="chart_container">
                     <canvas id="myChart"></canvas>
                 </div>
