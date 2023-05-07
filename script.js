@@ -125,7 +125,6 @@
     });
   }
 
-  /* FUNCTION TO CREATE CHART */
 
   // function shapeDataForChart(array) {
     
