@@ -48,38 +48,38 @@
   by adding `<script src="script.js">` just before your closing `</body>` tag
 */
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
-}
+// function getRandomIntInclusive(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+// }
 
-function injectHTML(list) {
-    console.log('fired injectHTML');
-    const target = document.querySelector('#restaurant_list');
-    target.innerHTML = '';
-    list.forEach((item) => {
-        const str = `<li>${item.name}</li>`;
-        target.innerHTML += str;
-    });
-}
+// function injectHTML(list) {
+//     console.log('fired injectHTML');
+//     const target = document.querySelector('#restaurant_list');
+//     target.innerHTML = '';
+//     list.forEach((item) => {
+//         const str = `<li>${item.name}</li>`;
+//         target.innerHTML += str;
+//     });
+// }
 
 /* A quick filter that will return something based on a matching input */
-function filterList(list, query) {
+// function filterList(list, query) {
 
-    return list.filter((item) => {
+//     return list.filter((item) => {
       
-      const lowerCaseName = item.name.toLowerCase();
-      const lowerCaseQuery = query.toLowerCase();
-      return lowerCaseName.includes(lowerCaseQuery);
-    });
-    /*
-      Using the .filter array method, 
-      return a list that is filtered by comparing the item name in lower case
-      to the query in lower case
-      Ask the TAs if you need help with this
-    */
-}
+//       const lowerCaseName = item.name.toLowerCase();
+//       const lowerCaseQuery = query.toLowerCase();
+//       return lowerCaseName.includes(lowerCaseQuery);
+//     });
+//     /*
+//       Using the .filter array method, 
+//       return a list that is filtered by comparing the item name in lower case
+//       to the query in lower case
+//       Ask the TAs if you need help with this
+//     */
+// }
   
   // function cutRestaurantList(list) {
   //   console.log('fired cut list');
@@ -92,6 +92,11 @@ function filterList(list, query) {
   //   }));
   // }
 
+
+
+  
+
+  /* FUNCTION TO CREATE CHART */
 
   function initChart(chart, object) {
     
@@ -119,24 +124,27 @@ function filterList(list, query) {
       }
     });
   }
-  function shapeDataForChart(array) {
+
+  /* FUNCTION TO CREATE CHART */
+
+  // function shapeDataForChart(array) {
     
-    return array.reduce((collection, item) => {
-      if(!collection[item.category]) {
-        collection[item.category] = [item];
-      } else {
-        collection[item.category].push(item);
-      }
-      return collection;
-    }, {});
-  }
+  //   return array.reduce((collection, item) => {
+  //     if(!collection[item.category]) {
+  //       collection[item.category] = [item];
+  //     } else {
+  //       collection[item.category].push(item);
+  //     }
+  //     return collection;
+  //   }, {});
+  // }
 
   async function mainEvent() { // the async keyword means we can make API requests
-    const mainForm = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
-    const filterButton = document.querySelector('#filter');
-    const clearDataButton = document.querySelector('#data_clear');
+    // const mainForm = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
+    // const filterButton = document.querySelector('#filter');
+    // const clearDataButton = document.querySelector('#data_clear');
     const generateListButton = document.querySelector('#generate');
-    const textField = document.querySelector('#resto');
+    // const textField = document.querySelector('#resto');
     const chartTarget = document.querySelector('#myChart');
 
 
@@ -148,15 +156,15 @@ function filterList(list, query) {
     
     
     
-    const storedData = localStorage.getItem("storedData");
-    let parsedData = JSON.parse(storedData);
-    if (parsedData?.length > 0 ) {
-      generateListButton.classList.remove("hidden");
-    }
+    // const storedData = localStorage.getItem("storedData");
+    // let parsedData = JSON.parse(storedData);
+    // if (parsedData?.length > 0 ) {
+    //   generateListButton.classList.remove("hidden");
+    // }
 
 
-
-    let currentList = []; // this is "scoped" to the main event function
+    
+    // let currentList = []; // this is "scoped" to the main event function
 
     console.log('Loading Data');
       loadAnimation.style.display = 'inline-block'
@@ -166,34 +174,42 @@ function filterList(list, query) {
   
       // This changes the response from the GET into data we can use - an "object"
       const storedList = await results.json();
-      // change storedList object ot results array
+      // change storedList object to results array
       const dataList = storedList.Results;
-      localStorage.setItem('storedData', JSON.stringify(dataList));
+      // localStorage.setItem('storedData', JSON.stringify(dataList));
       
-      parsedData = dataList;
+      
+      // parsedData = dataList;
 
 
-      if (parsedData?.length > 0 ) {
-        generateListButton.classList.remove("hidden");
-      }
+      // if (parsedData?.length > 0 ) {
+      //   generateListButton.classList.remove("hidden");
+      // }
 
       
 
       let obj = {};
 
-      for (let i = 0, j = parsedData.length; i < j; i++) {
-        if (obj[parsedData[i].Country]) {
-          obj[parsedData[i].Country]++;
+      for (let i = 0, j = dataList.length; i < j; i++) {
+        if (obj[dataList[i].Country]) {
+          obj[dataList[i].Country]++;
         }
         else {
-          obj[parsedData[i].Country] = 1;
+          obj[dataList[i].Country] = 1;
         } 
       }
 
-     
-      const shapedData = shapeDataForChart(parsedData);
+      localStorage.setItem('storedData', JSON.stringify(obj));
+      
 
-      let myChart = initChart(chartTarget, obj);
+      const storedData = localStorage.getItem("storedData");
+    
+      let parsedData = JSON.parse(storedData);
+      
+     
+      // const shapedData = shapeDataForChart(parsedData);
+
+      let myChart = initChart(chartTarget, parsedData);
 
       loadAnimation.style.display = 'none';
 
@@ -202,33 +218,21 @@ function filterList(list, query) {
       dropdown.addEventListener("change", (event) => {
         const selectedOption = event.target.value;
         
-        
-        console.log(Object.keys(obj));
-        console.log(selectedOption);
-        
         for (let i = 0, j = Object.keys(obj).length; i < j; i++) {
 
           if (String(selectedOption) === 'ALL') {
-            
             myChart.destroy();
             myChart = initChart(chartTarget, obj);
           }
 
           if (Object.keys(obj)[i] === String(selectedOption)) {
-            console.log("hello", Object.keys(obj)[i]);
-            const hello = Object.keys(obj)[i];
             const arr = {};
             arr[Object.keys(obj)[i]] = Object.values(obj)[i];
 
             myChart.destroy();
             myChart = initChart(chartTarget, arr);
-              
-          };
-            
-            
+          };  
         }
-        
-
       });
     
     
