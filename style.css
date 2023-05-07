@@ -118,6 +118,7 @@
     flex: 0 1 auto;
     margin: 1rem;
     padding: 1.5rem;
+    border: solid;
   }
   
   .right_section {
@@ -128,6 +129,7 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
+    border: solid;
   }
   
   
