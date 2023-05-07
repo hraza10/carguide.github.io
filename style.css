@@ -1,19 +1,8 @@
-/* 
-    New code bonus: pure CSS data loading icon
-    This comes from loading.io/css - it's nice to show that something is happening!
-*/
-
-/*
-Form Styles
-*/
 * {
     box-sizing: border-box;
   }
   
-  /* 
-    These rules apply to actual HTML elements with no labelling!
-    So: they style the tags directly
-  */
+
   
   html {
     background-color: #fff;
@@ -22,7 +11,6 @@ Form Styles
     overflow-x: hidden;
     overflow-y: scroll;
   
-    /* these are specific to different browsers */
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -57,12 +45,6 @@ Form Styles
     accent-color: hsla(120, 100%, 50%, 0.482);
   }
   
-  /*
-    - These styles use 'class names'
-    - You can apply them by using the 'class' attribute on your HTML
-    - like this: <div class="wrapper">
-    - note that the period vanishes there!
-  */
   
   
   .wrapper {
@@ -89,15 +71,9 @@ Form Styles
   }
   
   
-  /*
-    This rule implies that the H1 tag lives within another HTML tag
-    It "inherits" some rules from the above
-    Those rules won't apply to an h1 that's outside a block with the class of 'header'
-  */
   
   .header h1 {
     display: block;
-    /* this will push other blocks out of the way */
   
     /* colors */
     background-color: black;
@@ -118,14 +94,7 @@ Form Styles
   }
   
   
-  /*
-    Rules can be combined on a block to apply the 'cascade' in order
-    So you can use two classnames in a single class attribute
-    like: <div class="box section">
   
-    Rules may combine in unexpected ways - remember that the LAST thing written in this file will have "priority"
-    And will be what displays in your client
-  */
 
   #map {
     width: 400px;
@@ -161,11 +130,7 @@ Form Styles
     flex-direction: column;
   }
   
-  /*
-    This block is actually dependent on the "container" block having a flex set on it
-    and the "wrapper" block displaying as a flex column with a "vertical height" (vh) of 100.
-    That serves to cram the footer to the bottom of the page.
-  */
+  
   
   .footer {
     flex-shrink: 0;
@@ -182,11 +147,7 @@ Form Styles
     text-decoration: underline;
   }
   
-  /*
-    This is an example of a 'pseudoclass'
-    In this instance, it says what to do if a mouse hovers over a link
-    This is pretty desktop-specific, since there's no hover function on touchscreens
-  */
+  
   .footer a:hover {
     /* Hue, saturation, luminosity, alpha */
     background-color: hsla(0, 0%, 90%, 0.15);
@@ -202,7 +163,6 @@ Form Styles
   }
   
   
-  /* Deploy this with images as direct "children" and the images should pop into shape */
   .grid {
     display: flex;
     justify-content: space-evenly;
@@ -249,17 +209,7 @@ Form Styles
   }
   
   .carousel_item img {
-    /* 
-      Setting width, rather than max-width or min-width,
-      means annoying pop-ins won't happen
-      but it also means you need to format your images to be compatible
-      or they will stretch weird
-  
-      - try a tall one and see what happens
-      - change the height on a fixed image size and see what happens
-      - now make sure that images are _always_ square
-      - ... there's a reason crop tools are popular in image editors
-     */
+    
     width: 150px; 
   }
   
@@ -312,11 +262,8 @@ Form Styles
     margin-bottom: 0.5rem;
   }
   
-  /* How To Write A Media Query For Small Screens */
   
   @media only screen and (max-width: 736px){
-      /* Rules in here will only apply when a screen is the correct size */
-      /* check it out by using your developer tools to shrink your screen-size */
       .container {
         flex-direction: column;
         justify-content: center;
