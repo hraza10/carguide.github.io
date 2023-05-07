@@ -231,16 +231,16 @@
       dropdown.addEventListener("change", (event) => {
         const selectedOption = event.target.value;
         
-        for (let i = 0, j = Object.keys(obj).length; i < j; i++) {
+        for (let i = 0, j = Object.keys(parsedData).length; i < j; i++) {
 
           if (String(selectedOption) === 'ALL') {
             myChart.destroy();
-            myChart = initChart(chartTarget, obj);
+            myChart = initChart(chartTarget, parsedData);
           }
 
-          if (Object.keys(obj)[i] === String(selectedOption)) {
+          if (Object.keys(parsedData)[i] === String(selectedOption)) {
             const arr = {};
-            arr[Object.keys(obj)[i]] = Object.values(obj)[i];
+            arr[Object.keys(parsedData)[i]] = Object.values(parsedData)[i];
 
             myChart.destroy();
             myChart = initChart(chartTarget, arr);
