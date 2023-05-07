@@ -1,5 +1,3 @@
-  /* FUNCTION TO CREATE CHART */
-
   function initChart(chart, object) {
     
     
@@ -28,13 +26,11 @@
     });
   }
 
-  /* FUNCTION TO DESTROY CHART */
 
   function destroyChart(chart) {
     chart.destroy();
   }
 
-  /* FUNCTION TO COUNT COUNTRIES */
 
   function countCountry(data) {
 
@@ -52,44 +48,17 @@
     return dict;
   }
 
-  // function shapeDataForChart(array) {
-    
-  //   return array.reduce((collection, item) => {
-  //     if(!collection[item.category]) {
-  //       collection[item.category] = [item];
-  //     } else {
-  //       collection[item.category].push(item);
-  //     }
-  //     return collection;
-  //   }, {});
-  // }
 
-  async function mainEvent() { // the async keyword means we can make API requests
-    // const mainForm = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
-    // const filterButton = document.querySelector('#filter');
-    // const clearDataButton = document.querySelector('#data_clear');
-    // const generateListButton = document.querySelector('#generate');
-    // const textField = document.querySelector('#resto');
+  async function mainEvent() { 
     const chartTarget = document.querySelector('#myChart');
     const refreshButton = document.querySelector('#generate');
     const dropdown = document.querySelector("#filter");
 
 
-    // Add a querySelector that targets your filter button here
   
     const loadAnimation = document.querySelector('#data_load_animation');
     
-    loadAnimation.style.display = "none";
-    // generateListButton.classList.add("hidden");
-    
-    
-    
-    // const storedData = localStorage.getItem("storedData");
-    // let parsedData = JSON.parse(storedData);
-    // if (parsedData?.length > 0 ) {
-    //   generateListButton.classList.remove("hidden");
-    // }
-
+    loadAnimation.style.display = "none";    
 
     
   
@@ -97,10 +66,8 @@
     console.log('Loading Data');
     loadAnimation.style.display = 'inline-block';
 
-    // Basic GET request - this replaces the form Action.
     const results = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json');
 
-    // This changes the response from the GET into data we can use - an "object"
     const storedList = await results.json();
     const dataList = storedList.Results;
 
@@ -112,12 +79,6 @@
 
 
     let countryCount = countCountry(parsedData);
-
-    // localStorage.setItem('storedData', JSON.stringify(obj));
-
-    // let storedData = localStorage.getItem("storedData");
-  
-    // let parsedData = JSON.parse(storedData);
     
     let myChart = initChart(chartTarget, countryCount);
 
@@ -167,29 +128,6 @@
     });
 
       
-       
-  //   generateListButton.addEventListener('click', (event) => {
-  //     console.log('generate new list');
-
-  //     currentList = cutRestaurantList(parsedData);
-  //     console.log(currentList);
-  //     injectHTML(currentList);
-  //     // markerPlace(currentList, carto);
-  //   });
-
-  //   textField.addEventListener('input', (event) => {
-  //     console.log('input', event.target.value);
-  //     const newList = filterList(currentList, event.target.value);
-  //     console.log(newList);
-  //     injectHTML(newList);
-  //     // markerPlace(newList, carto);
-  //   });
-
-  //   clearDataButton.addEventListener("click", (event) => {
-  //     console.log("clear browser data");
-  //     localStorage.clear();
-  //     console.log("localStorage Check", localStorage.getItem("storedData"));
-  //   })
   }
   
   document.addEventListener('DOMContentLoaded', async () => mainEvent());
