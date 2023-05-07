@@ -125,6 +125,12 @@
     });
   }
 
+  /* FUNCTION TO DESTROY CHART */
+
+  function destroyChart(chart) {
+    chart.destroy();
+  }
+
   /* FUNCTION TO COUNT COUNTRIES */
 
   function countCountry(data, dict) {
@@ -154,7 +160,7 @@
     // const mainForm = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
     // const filterButton = document.querySelector('#filter');
     // const clearDataButton = document.querySelector('#data_clear');
-    const generateListButton = document.querySelector('#generate');
+    // const generateListButton = document.querySelector('#generate');
     // const textField = document.querySelector('#resto');
     const chartTarget = document.querySelector('#myChart');
 
@@ -163,7 +169,7 @@
   
     const loadAnimation = document.querySelector('#data_load_animation');
     loadAnimation.style.display = "none";
-    generateListButton.classList.add("hidden");
+    // generateListButton.classList.add("hidden");
     
     
     
@@ -276,14 +282,5 @@
   //   })
   }
   
-  function filterCountry() {
-    const charts = document.querySelectorAll(".chart");
-
- 
-  }
-
-  function destroyChart(chart) {
-    chart.destroy();
-  }
   document.addEventListener('DOMContentLoaded', async () => mainEvent());
 
