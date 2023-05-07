@@ -94,7 +94,7 @@
 
 
 
-  
+
 
   /* FUNCTION TO CREATE CHART */
 
@@ -125,6 +125,18 @@
     });
   }
 
+  /* FUNCTION TO COUNT COUNTRIES */
+
+  function countCountry(data, dict) {
+    for (let i = 0, j = data.length; i < j; i++) {
+      if (dict[data[i].Country]) {
+        dict[data[i].Country]++;
+      }
+      else {
+        dict[data[i].Country] = 1;
+      } 
+    }
+  }
 
   // function shapeDataForChart(array) {
     
@@ -189,14 +201,16 @@
 
       let obj = {};
 
-      for (let i = 0, j = dataList.length; i < j; i++) {
-        if (obj[dataList[i].Country]) {
-          obj[dataList[i].Country]++;
-        }
-        else {
-          obj[dataList[i].Country] = 1;
-        } 
-      }
+      // for (let i = 0, j = dataList.length; i < j; i++) {
+      //   if (obj[dataList[i].Country]) {
+      //     obj[dataList[i].Country]++;
+      //   }
+      //   else {
+      //     obj[dataList[i].Country] = 1;
+      //   } 
+      // }
+
+      countCountry(dataList, obj);
 
       localStorage.setItem('storedData', JSON.stringify(obj));
       
