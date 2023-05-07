@@ -2,6 +2,7 @@
 
   function initChart(chart, object) {
     
+    
     const labels = Object.keys(object);
     const info = Object.values(object);
     
@@ -35,7 +36,10 @@
 
   /* FUNCTION TO COUNT COUNTRIES */
 
-  function countCountry(data, dict) {
+  function countCountry(data) {
+
+    let dict = {};
+
     for (let i = 0, j = data.length; i < j; i++) {
       if (dict[data[i].Country]) {
         dict[data[i].Country]++;
@@ -44,6 +48,8 @@
         dict[data[i].Country] = 1;
       } 
     }
+
+    return dict;
   }
 
   // function shapeDataForChart(array) {
@@ -72,6 +78,7 @@
     // Add a querySelector that targets your filter button here
   
     const loadAnimation = document.querySelector('#data_load_animation');
+    
     loadAnimation.style.display = "none";
     // generateListButton.classList.add("hidden");
     
@@ -85,88 +92,79 @@
 
 
     
-    console.log("beginning", localStorage);
+  
 
     console.log('Loading Data');
-      loadAnimation.style.display = 'inline-block'
+    loadAnimation.style.display = 'inline-block';
+
+    // Basic GET request - this replaces the form Action.
+    const results = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json');
+
+    // This changes the response from the GET into data we can use - an "object"
+    const storedList = await results.json();
+    const dataList = storedList.Results;
+
+    localStorage.setItem('storedData', JSON.stringify(dataList));
+
+    let storedData = localStorage.getItem("storedData");
   
-      // Basic GET request - this replaces the form Action.
-      const results = await fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json');
+    let parsedData = JSON.parse(storedData);
+
+
+    let countryCount = countCountry(parsedData);
+
+    // localStorage.setItem('storedData', JSON.stringify(obj));
+
+    // let storedData = localStorage.getItem("storedData");
   
-      // This changes the response from the GET into data we can use - an "object"
-      const storedList = await results.json();
-      const dataList = storedList.Results;
-
-      console.log("after API call", localStorage);
-
-      
-      
-
-
-      // if (parsedData?.length > 0 ) {
-      //   generateListButton.classList.remove("hidden");
-      // }
-
-      
-
-      let obj = {};
-
-      countCountry(dataList, obj);
-
-      localStorage.setItem('storedData', JSON.stringify(obj));
-      console.log("storedData is set", localStorage);
-
-      let storedData = localStorage.getItem("storedData");
+    // let parsedData = JSON.parse(storedData);
     
-      let parsedData = JSON.parse(storedData);
-      
+    let myChart = initChart(chartTarget, countryCount);
 
-      let myChart = initChart(chartTarget, parsedData);
+    loadAnimation.style.display = 'none';
+
+      
+      
+    dropdown.addEventListener("change", (event) => {
+      
+      const selectedOption = event.target.value;
+      
+      for (let i = 0, j = Object.keys(countryCount).length; i < j; i++) {
+
+        if (selectedOption === 'ALL') {
+          myChart.destroy();
+          myChart = initChart(chartTarget, countryCount);
+        }
+
+        if (Object.keys(countryCount)[i] === selectedOption) {
+          const arr = {};
+          arr[Object.keys(countryCount)[i]] = Object.values(countryCount)[i];
+
+          myChart.destroy();
+          myChart = initChart(chartTarget, arr);
+        };  
+      }
+    });
+    
+    
+    refreshButton.addEventListener('click', (event) => {
+      loadAnimation.style.display = 'inline-block'
+      localStorage.clear();
+
+      localStorage.setItem('storedData', JSON.stringify(dataList));
+
+      storedData = localStorage.getItem("storedData");
+    
+      parsedData = JSON.parse(storedData);
+      
+      countryCount = countCountry(parsedData);
+      myChart.destroy();
+      myChart = initChart(chartTarget, countryCount);
+      dropdown.value = 'ALL';
 
       loadAnimation.style.display = 'none';
 
-      
-      
-      dropdown.addEventListener("change", (event) => {
-        console.log(localStorage);
-        const selectedOption = event.target.value;
-        
-        for (let i = 0, j = Object.keys(parsedData).length; i < j; i++) {
-
-          if (String(selectedOption) === 'ALL') {
-            myChart.destroy();
-            myChart = initChart(chartTarget, parsedData);
-          }
-
-          if (Object.keys(parsedData)[i] === String(selectedOption)) {
-            const arr = {};
-            arr[Object.keys(parsedData)[i]] = Object.values(parsedData)[i];
-
-            myChart.destroy();
-            myChart = initChart(chartTarget, arr);
-          };  
-        }
-      });
-    
-    
-      refreshButton.addEventListener('click', (event) => {
-        loadAnimation.style.display = 'inline-block'
-        localStorage.clear();
-        console.log(localStorage);
-
-        localStorage.setItem('storedData', JSON.stringify(obj));
-        console.log("storedData is set", localStorage);
-  
-        storedData = localStorage.getItem("storedData");
-      
-        parsedData = JSON.parse(storedData);
-        
-        myChart.destroy();
-        myChart = initChart(chartTarget, parsedData);
-
-        loadAnimation.style.display = 'none';
-
-      });
+    });
 
       
        
