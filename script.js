@@ -78,6 +78,7 @@
     // Add a querySelector that targets your filter button here
   
     const loadAnimation = document.querySelector('#data_load_animation');
+    
     loadAnimation.style.display = "none";
     // generateListButton.classList.add("hidden");
     
@@ -125,16 +126,17 @@
       
       
     dropdown.addEventListener("change", (event) => {
+      
       const selectedOption = event.target.value;
       
       for (let i = 0, j = Object.keys(countryCount).length; i < j; i++) {
 
-        if (String(selectedOption) === 'ALL') {
+        if (selectedOption === 'ALL') {
           myChart.destroy();
           myChart = initChart(chartTarget, countryCount);
         }
 
-        if (Object.keys(countryCount)[i] === String(selectedOption)) {
+        if (Object.keys(countryCount)[i] === selectedOption) {
           const arr = {};
           arr[Object.keys(countryCount)[i]] = Object.values(countryCount)[i];
 
@@ -158,6 +160,7 @@
       countryCount = countCountry(parsedData);
       myChart.destroy();
       myChart = initChart(chartTarget, countryCount);
+      dropdown.value = 'ALL';
 
       loadAnimation.style.display = 'none';
 
