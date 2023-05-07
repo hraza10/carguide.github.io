@@ -163,6 +163,8 @@
     // const generateListButton = document.querySelector('#generate');
     // const textField = document.querySelector('#resto');
     const chartTarget = document.querySelector('#myChart');
+    const refreshButton = document.querySelector('#generate');
+    const dropdown = document.querySelector("#filter");
 
 
     // Add a querySelector that targets your filter button here
@@ -181,7 +183,7 @@
 
 
     
-    // let currentList = []; // this is "scoped" to the main event function
+    console.log("beginning", localStorage);
 
     console.log('Loading Data');
       loadAnimation.style.display = 'inline-block'
@@ -191,12 +193,12 @@
   
       // This changes the response from the GET into data we can use - an "object"
       const storedList = await results.json();
-      // change storedList object to results array
       const dataList = storedList.Results;
-      // localStorage.setItem('storedData', JSON.stringify(dataList));
+
+      console.log("after API call", localStorage);
+
       
       
-      // parsedData = dataList;
 
 
       // if (parsedData?.length > 0 ) {
@@ -207,34 +209,24 @@
 
       let obj = {};
 
-      // for (let i = 0, j = dataList.length; i < j; i++) {
-      //   if (obj[dataList[i].Country]) {
-      //     obj[dataList[i].Country]++;
-      //   }
-      //   else {
-      //     obj[dataList[i].Country] = 1;
-      //   } 
-      // }
-
       countCountry(dataList, obj);
 
       localStorage.setItem('storedData', JSON.stringify(obj));
-      
+      console.log("storedData is set", localStorage);
 
-      const storedData = localStorage.getItem("storedData");
+      let storedData = localStorage.getItem("storedData");
     
       let parsedData = JSON.parse(storedData);
       
-     
-      // const shapedData = shapeDataForChart(parsedData);
 
       let myChart = initChart(chartTarget, parsedData);
 
       loadAnimation.style.display = 'none';
 
-      const dropdown = document.getElementById("filter");
+      
       
       dropdown.addEventListener("change", (event) => {
+        console.log(localStorage);
         const selectedOption = event.target.value;
         
         for (let i = 0, j = Object.keys(parsedData).length; i < j; i++) {
@@ -255,9 +247,27 @@
       });
     
     
-  
-  
+      refreshButton.addEventListener('click', (event) => {
+        loadAnimation.style.display = 'inline-block'
+        localStorage.clear();
+        console.log(localStorage);
 
+        localStorage.setItem('storedData', JSON.stringify(obj));
+        console.log("storedData is set", localStorage);
+  
+        storedData = localStorage.getItem("storedData");
+      
+        parsedData = JSON.parse(storedData);
+        
+        myChart.destroy();
+        myChart = initChart(chartTarget, parsedData);
+
+        loadAnimation.style.display = 'none';
+
+      });
+
+      
+       
   //   generateListButton.addEventListener('click', (event) => {
   //     console.log('generate new list');
 
