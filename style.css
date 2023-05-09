@@ -70,7 +70,15 @@
     padding-bottom: 0rem;
   }
   
-  
+  .header a {
+    color: lightskyblue;
+    text-decoration: underline;
+  }
+
+  .header a:hover {
+    color: blue;
+    text-decoration: none;
+  }
   
   .header h1 {
     display: block;
