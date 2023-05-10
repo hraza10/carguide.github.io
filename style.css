@@ -69,7 +69,7 @@
     padding-right: 0rem;
     padding-bottom: 0rem;
   }
-  
+
   header img {
     position: absolute;
     right: 800;
@@ -99,10 +99,10 @@
     font-size: 1.5rem;
 
     padding: 1.25rem;
-    margin:0; /* removing the margin on h1 tags means the header pins to the top if we move */
+    margin:0; 
   
   
-    /* box-shadows are fancy */
+    
     box-shadow: 0 0.5em 1em -0.125em rgba(0, 0, 0, 0.1), 0 0 0 1px rgb(10 10 10 / 2%);
   }
   
@@ -167,7 +167,6 @@
   
   
   .footer a:hover {
-    /* red, green, blue, alpha */
     color: blue;
     text-decoration: none;
   }
@@ -288,8 +287,8 @@
   
       .box {
         width: 100%;
-        width: -moz-available;          /* WebKit-based browsers will ignore this. */
-        width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+        width: -moz-available;          
+        width: -webkit-fill-available;  
         width: fill-available;
         align-items: flex-start;
       }
