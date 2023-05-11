@@ -6,7 +6,9 @@ https://hraza10.github.io/
 
 Hassan Raza and Suyog Gyawali working together
 
-API we used: Get All Manufacturers
+API we used: Get All Manufacturers, 
 Link to the API: https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json
+
+Our visualization shows a bar chart which displays the countries with the number of car manufacturers.
 
 
