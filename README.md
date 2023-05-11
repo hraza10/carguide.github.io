@@ -1,10 +1,13 @@
-# final_project_377
-INST377 Final Visualization Project
+# INST377 Car Guide
 
-Go to Github Pages link to view the site:
+###Github Pages link to view the site:
 https://hraza10.github.io/
 
-Hassan Raza and Suyog Gyawali working together
+###Collaborators:
+Hassan Raza
+Suyog Gyawali
+
+##Description
 
 - API we used: Get All Manufacturers, 
   Link to the API: https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json
