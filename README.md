@@ -8,6 +8,8 @@ Hassan Raza & Suyog Gyawali
 
 ## Description
 
+- The website can be utilized in both desktop and mobile browsers, with targeted operating system being iOS (as it was built on a Macbook Pro). The target browsers for the website are Google Chrome (version 112.0.5615.137) and Safari (version 16.3). The website is expected to work similarly in Firefox (version 112.0.1), with a slight chance of waiting animations not appearing while the data is loaded. However, the website should be fully functional in these browsers.  
+
 - API we used: Get All Manufacturers, 
   Link to the API: https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json
 
