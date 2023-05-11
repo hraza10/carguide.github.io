@@ -1,9 +1,9 @@
 # INST377 Car Guide
 
-###Github Pages link to view the site:
+Github Pages link to view the site:
 https://hraza10.github.io/
 
-###Collaborators:
+Collaborators:
 Hassan Raza
 Suyog Gyawali
 
