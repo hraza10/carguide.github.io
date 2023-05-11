@@ -1,20 +1,20 @@
 # INST377 Car Guide
 
-Github Pages link to view the site:
+### Github Pages link to view the site:
 https://hraza10.github.io/
 
-Collaborators:
+### Collaborators:
 Hassan Raza
 Suyog Gyawali
 
-##Description
+## Description
 
 - API we used: Get All Manufacturers, 
   Link to the API: https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json
 
 - Our visualization shows a bar chart of the countries with the number of car manufacturers.
 
-- What visualisation or other JS libraries does your project use?
+- The project mainly utilizes Charts.js to create the bar chart. The library was utilized for its simple functionality and elegant visualization styles.
 
 - What CSS frameworks did you use? What version of them?
 
