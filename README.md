@@ -4,8 +4,7 @@
 https://hraza10.github.io/
 
 ### Collaborators:
-Hassan Raza
-Suyog Gyawali
+Hassan Raza & Suyog Gyawali
 
 ## Description
 
